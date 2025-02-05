@@ -1,4 +1,4 @@
-import Nav from "../Nav/nav";
+import Nav from "../Nav/nav.jsx";
 
 function Header() {
   return (
