@@ -1,5 +1,10 @@
 import { useState } from "react";
-
+const itemPrices = {
+  XS: 24,
+  S: 28,
+  M: 38,
+  L: 48,
+};
 function CardComponent({ collar }) {
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -10,10 +15,12 @@ function CardComponent({ collar }) {
   const handleAddToCart = () => {
     if (selectedSize) {
       console.log(`Added ${collar.name} in size ${selectedSize} to cart`);
+      let price = itemPrices[selectedSize];
       const item = {
+        id: collar.id,
         name: collar.name,
         size: collar.size,
-        price: collar.price,
+        price: price,
         image: collar.image,
       };
 
