@@ -1,0 +1,73 @@
+/* Container for the cart page */
+.cart-page {
+  padding: 20px;
+}
+
+/* Page title */
+.cart-page h1 {
+  margin-bottom: 20px;
+}
+
+/* Table styles */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.cart-header-left {
+  text-align: left;
+  padding: 8px;
+}
+
+/* Row styling */
+.cart-row {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Image styling */
+.cart-image {
+  width: 50px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* Quantity input styling */
+.cart-quantity-input {
+  width: 60px;
+}
+
+/* Cell styling */
+.cart-cell {
+  padding: 8px;
+}
+
+/* Cart summary section */
+.cart-summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* Checkout button styling */
+.cart-checkout-button {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Remove button styling */
+.cart-remove-button {
+  padding: 5px 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
