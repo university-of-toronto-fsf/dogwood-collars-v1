@@ -1,6 +1,12 @@
 import img1 from "../assets/main-slogan.png";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleBuyNowClick = () => {
+    navigate("/product");
+  };
   return (
     <div
       className="d-flex justify-content-center"
@@ -60,6 +66,7 @@ function Home() {
               style={{
                 marginTop: "20px",
               }}
+              onClick={handleBuyNowClick}
             >
               Buy Now!
             </button>
