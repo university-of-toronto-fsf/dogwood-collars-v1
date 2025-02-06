@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "./index.js"; // Import sequelize connection from index.js
+import sequelize from "../config/connection.js";
 
 const Product = sequelize.define("Product", {
   id: {
@@ -11,7 +11,7 @@ const Product = sequelize.define("Product", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  description: {
+  size: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -19,18 +19,10 @@ const Product = sequelize.define("Product", {
     type: DataTypes.FLOAT,
     allowNull: false,
   },
-  stock: {
-    type: DataTypes.INTEGER,
+  image: {
+    type: DataTypes.STRING,
     allowNull: false,
-  },
-  userId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: "User",
-      key: "id",
-    },
   },
 });
 
-export { Product };
+export default Product;

@@ -5,9 +5,10 @@ const router = express.Router();
 
 // Example test endpoint /api/products
 router.get("/", async (req, res) => {
-  console.log("Hello product endpoint!");
-  console.log("req.url", req.url);
-  res.status(200).json({ message: "Hello product endpoint" });
+  // console.log("Hello product endpoint!");
+  // console.log("req.url", req.url);
+  // res.status(200).json({ message: "Hello product endpoint" });
+  ProductController.getAllProducts(req, res);
 });
 
 // All routes
