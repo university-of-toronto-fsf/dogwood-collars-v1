@@ -1,64 +1,79 @@
 import React, { useEffect, useState } from "react";
 import "./CartPage.css";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 const CartPage = () => {
-  const [products, setProducts] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [cartItems, setCartItems] = useState([]);
 
+  // Load cart items from localStorage when component mounts
   useEffect(() => {
-    const storedProducts = localStorage.getItem("products");
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-    } else {
-      localStorage.setItem("products", JSON.stringify(initialProducts));
-      setProducts(initialProducts);
-    }
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCart);
   }, []);
 
+  // Update localStorage whenever cartItems change
   useEffect(() => {
-    const storedCart = localStorage.getItem("cartItems");
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    } else {
-      localStorage.setItem("cartItems", JSON.stringify(initialItems));
-      setCartItems(initialItems);
+    if (cartItems.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartItems));
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const handleAddToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
-    if (existingItem) {
-      handleQuantityChange(product.id, existingItem.quantity + 1);
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
-
-  const handleQuantityChange = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    const updatedItems = cartItems.map((item) =>
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    );
-    setCartItems(updatedItems);
-  };
+  // const handleQuantityChange = (id, newQuantity) => {
+  //   if (newQuantity < 1) return;
+  //   const updatedItems = cartItems.map((item) =>
+  //     item.id === id ? { ...item, quantity: newQuantity } : item
+  //   );
+  //   setCartItems(updatedItems);
+  // };
 
   const handleRemoveItem = (id) => {
     const updatedItems = cartItems.filter((item) => item.id !== id);
+    console.log(updatedItems);
+    console.log(id);
     setCartItems(updatedItems);
   };
 
   const getTotalPrice = () => {
     return cartItems
-      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .reduce((total, item) => total + parseFloat(item.price), 0)
       .toFixed(2);
   };
 
   return (
     <div className="cart-page">
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>User Information</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <label htmlFor="Email">Email:</label>
+            <input type="text" />
+            <br></br>
+            <label htmlFor="Password">Password:</label>
+            <input type="text" />
+            <br></br>
+            <button>Login</button>
+          </form>
+          <a>
+            <button>Continue as Guest</button>
+          </a>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <h1>Your Cart</h1>
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
@@ -69,8 +84,8 @@ const CartPage = () => {
               <tr>
                 <th className="cart-header-left">Product</th>
                 <th className="cart-header-left">Price</th>
-                <th className="cart-header-left">Quantity</th>
-                <th className="cart-header-left">Subtotal</th>
+                {/* <th className="cart-header-left">Quantity</th> */}
+                {/* <th className="cart-header-left">Subtotal</th> */}
                 <th className="cart-header-left">Action</th>
               </tr>
             </thead>
@@ -78,11 +93,13 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <tr key={item.id} className="cart-row">
                   <td className="cart-cell">
-                    <img src={item.image} alt="..." className="cart-image" />
-                    {item.title}
+                    <img src={item.image} alt="" className="cart-image" />
+                    {item.name}
                   </td>
-                  <td className="cart-cell">${item.price.toFixed(2)}</td>
                   <td className="cart-cell">
+                    ${parseFloat(item.price).toFixed(2)}
+                  </td>
+                  {/* <td className="cart-cell">
                     <input
                       type="number"
                       min="1"
@@ -95,10 +112,10 @@ const CartPage = () => {
                       }
                       className="cart-quantity-input"
                     />
-                  </td>
-                  <td className="cart-cell">
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </td>
+                  </td> */}
+                  {/* <td className="cart-cell">
+                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
+                  </td> */}
                   <td className="cart-cell">
                     <button
                       onClick={() => handleRemoveItem(item.id)}
@@ -115,7 +132,7 @@ const CartPage = () => {
           <div className="cart-summary">
             <h2>Total: ${getTotalPrice()}</h2>
             <button
-              onClick={() => console.log("Proceeding to checkout...")}
+              onClick={() => handleShow()}
               className="cart-checkout-button"
             >
               Proceed to Checkout
