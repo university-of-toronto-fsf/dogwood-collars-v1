@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./CartPage.css"; // Import the external CSS file
+//import "./CartPage.css";
 
 const initialCartItems = [
   {
@@ -22,7 +22,7 @@ const CartPage = () => {
   const [cartItems, setCartItems] = useState(initialCartItems);
 
   const handleQuantityChange = (id, newQuantity) => {
-    if (newQuantity < 1) return; // Prevent quantities less than 1
+    if (newQuantity < 1) return;
     const updatedItems = cartItems.map((item) =>
       item.id === id ? { ...item, quantity: newQuantity } : item
     );
