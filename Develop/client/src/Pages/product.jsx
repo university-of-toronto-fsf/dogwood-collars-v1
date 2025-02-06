@@ -62,13 +62,6 @@ const Product = () => {
       price: "$24-$48",
       image: antique,
     },
-    // {
-    //   id: 1,
-    //   name: "Black-Orange",
-    //   sizes: "X-small, small, medium, large",
-    //   price: "$24-$48",
-    //   image: blackOrange,
-    // },
     {
       id: 1,
       name: "Green",
