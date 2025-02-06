@@ -10,7 +10,7 @@ VALUES ('marc', 'weeks', 'marcw@gmail.com'
 ('mike', 'lastname', 'mike@gmail.com');
 
 INSERT INTO products (
-    product_name,
+    product_name,s
     description,
     price,
     size,
