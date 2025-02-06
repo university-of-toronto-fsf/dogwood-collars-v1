@@ -1,35 +1,40 @@
+import img1 from "../assets/main-slogan.png";
+
 function Home() {
   return (
     <div
       className="d-flex justify-content-center"
       style={{
-        backgroundImage: "url(./IMG_4662.png)",
+        backgroundImage: { img1 },
         minHeight: "85vh",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#803809",
+        color: "white",
       }}
     >
       <div
-        className="card mb-3 mt-5 p-5"
+        className="text-center p-5"
         style={{
           width: "80%",
+          borderRadius: "10px",
+          boxShadow: "none",
         }}
       >
         <img
-          src="./IMG_6719.png"
-          className="card-img-top"
-          alt="..."
+          src={img1}
+          className="img-fluid"
+          alt="Dogwood main image and slogan"
           style={{
-            width: "200px",
-            height: "200px",
-            justifyContent: "center",
-            alignItems: "center",
-            borderRadius: "100px",
+            maxWidth: "100%",
+            height: "auto",
+            borderRadius: "10px",
           }}
         />
-        <div className="card-body">
-          <h3 className="card-title"></h3>
-          <img src="../../assets/dogwood-main" alt="..." />
+        <div className="text-center mt-4">
           <p className="card-text">
             Give your pet the perfect blend of style, comfort and durability
             with our hand-crafted dog collars. Designed by me with functionality
@@ -49,6 +54,15 @@ function Home() {
             perfect fit. See our measurement guide tab prior to ordering.
             <br />
             <br />
+            <button
+              type="button"
+              className="btn btn-outline-info btn-lg"
+              style={{
+                marginTop: "20px",
+              }}
+            >
+              Buy Now!
+            </button>
             <br />
             <br />
           </p>
