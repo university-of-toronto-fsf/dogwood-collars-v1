@@ -2,41 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./CartPage.css";
 
 const CartPage = () => {
-  const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
 
+  // Load cart items from localStorage when component mounts
   useEffect(() => {
-    const storedProducts = localStorage.getItem("products");
-    if (storedProducts) {
-      setProducts(JSON.parse(storedProducts));
-    } else {
-      localStorage.setItem("products", JSON.stringify(initialProducts));
-      setProducts(initialProducts);
-    }
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCartItems(storedCart);
   }, []);
 
+  // Update localStorage whenever cartItems change
   useEffect(() => {
-    const storedCart = localStorage.getItem("cartItems");
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
-    } else {
-      localStorage.setItem("cartItems", JSON.stringify(initialItems));
-      setCartItems(initialItems);
+    if (cartItems.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartItems));
     }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
-
-  const handleAddToCart = (product) => {
-    const existingItem = cartItems.find((item) => item.id === product.id);
-    if (existingItem) {
-      handleQuantityChange(product.id, existingItem.quantity + 1);
-    } else {
-      setCartItems([...cartItems, { ...product, quantity: 1 }]);
-    }
-  };
 
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return;
@@ -53,7 +32,10 @@ const CartPage = () => {
 
   const getTotalPrice = () => {
     return cartItems
-      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .reduce(
+        (total, item) => total + parseFloat(item.price) * item.quantity,
+        0
+      )
       .toFixed(2);
   };
 
@@ -78,10 +60,12 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <tr key={item.id} className="cart-row">
                   <td className="cart-cell">
-                    <img src={item.image} alt="..." className="cart-image" />
-                    {item.title}
+                    <img src={item.image} alt="" className="cart-image" />
+                    {item.name}
                   </td>
-                  <td className="cart-cell">${item.price.toFixed(2)}</td>
+                  <td className="cart-cell">
+                    ${parseFloat(item.price).toFixed(2)}
+                  </td>
                   <td className="cart-cell">
                     <input
                       type="number"
@@ -97,7 +81,7 @@ const CartPage = () => {
                     />
                   </td>
                   <td className="cart-cell">
-                    ${(item.price * item.quantity).toFixed(2)}
+                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
                   </td>
                   <td className="cart-cell">
                     <button
