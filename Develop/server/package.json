@@ -5,7 +5,6 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "funTest": "Never excute this command",
     "build": "npx tsc",
     "start": "npm run build && node dist/server.js --ignore client",
     "dev": "npx nodemon",
