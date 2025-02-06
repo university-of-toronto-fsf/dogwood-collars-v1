@@ -1,4 +1,4 @@
-import { Product } from "../models/Product.js"; // Assuming you have a Product model
+import Product from "../models/products.js"; // Assuming you have a Product model
 
 class ProductController {
   // Get all products

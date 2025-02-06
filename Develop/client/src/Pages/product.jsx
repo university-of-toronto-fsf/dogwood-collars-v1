@@ -10,80 +10,102 @@ import green from "../assets/green.png";
 import teal from "../assets/teal.png";
 import darkBlue from "../assets/dark-blue.png";
 import backgroundImg from "../assets/img06.png";
+import { useState, useEffect } from "react";
 
 const Product = () => {
-  const collars = [
-    {
-      id: 1,
-      name: "Multicolored",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: multiColorImage,
-    },
-    {
-      id: 2,
-      name: "Pink",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: pink,
-    },
-    {
-      id: 3,
-      name: "Dark Blue",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: darkBlue,
-    },
-    {
-      id: 4,
-      name: "Black",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: black,
-    },
-    {
-      id: 5,
-      name: "Brown",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: brown,
-    },
-    {
-      id: 6,
-      name: "Dark Brown",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: darkBrown,
-    },
-    {
-      id: 7,
-      name: "Gray",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: antique,
-    },
-    {
-      id: 1,
-      name: "Green",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: green,
-    },
-    {
-      id: 1,
-      name: "Teal",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: teal,
-    },
-    {
-      id: 1,
-      name: "Dark Blue",
-      sizes: "X-small, small, medium, large",
-      price: "$24-$48",
-      image: darkBlue,
-    },
-  ];
+  const [collars, setCollars] = useState([]);
+
+  const [combinedCollars, setCombinedCollars] = useState([]);
+
+  useEffect(() => {
+    async function getProducts() {
+      const response = await fetch("/api/products");
+      const data = await response.json();
+
+      console.log(data);
+
+      const allSmall = data.filter((product) => {
+        return product.size == "Small";
+      });
+
+      setCollars(allSmall);
+    }
+
+    getProducts();
+  }, []);
+
+  // const collars = [
+  //   {
+  //     id: 1,
+  //     name: "Multicolored",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: multiColorImage,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Pink",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: pink,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Dark Blue",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: darkBlue,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Black",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: black,
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Brown",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: brown,
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Dark Brown",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: darkBrown,
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "Gray",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: antique,
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Green",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: green,
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Teal",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: teal,
+  //   },
+  //   {
+  //     id: 1,
+  //     name: "Dark Blue",
+  //     sizes: "X-small, small, medium, large",
+  //     price: "$24-$48",
+  //     image: darkBlue,
+  //   },
+  // ];
 
   return (
     <>
