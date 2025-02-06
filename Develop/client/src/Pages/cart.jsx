@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-//import "./CartPage.css";
+import "./CartPage.css";
 
 const initialCartItems = [
   {
