@@ -1,19 +1,6 @@
-// import { useEffect, useState } from "react";
-
-// const Cart = () => {
-//   return (
-//     <>
-//       <h1>Cart</h1>
-//     </>
-//   );
-// };
-
-// export default Cart;
-
 import React, { useEffect, useState } from "react";
 import "./CartPage.css"; // Import the external CSS file
 
-// Sample initial cart data
 const initialCartItems = [
   {
     id: 1,
@@ -32,10 +19,8 @@ const initialCartItems = [
 ];
 
 const CartPage = () => {
-  // Set initial state for the cart items
   const [cartItems, setCartItems] = useState(initialCartItems);
 
-  // Update the quantity of a specific item
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return; // Prevent quantities less than 1
     const updatedItems = cartItems.map((item) =>
@@ -44,13 +29,11 @@ const CartPage = () => {
     setCartItems(updatedItems);
   };
 
-  // Remove an item from the cart
   const handleRemoveItem = (id) => {
     const updatedItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedItems);
   };
 
-  // Calculate the total price of the cart
   const getTotalPrice = () => {
     return cartItems
       .reduce((total, item) => total + item.price * item.quantity, 0)
