@@ -1,25 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "./CartPage.css";
 
-const initialCartItems = [
-  {
-    id: 1,
-    title: "Product 1",
-    image: "https://via.placeholder.com/150",
-    price: 29.99,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    title: "Product 2",
-    image: "https://via.placeholder.com/150",
-    price: 49.99,
-    quantity: 2,
-  },
-];
-
 const CartPage = () => {
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("products");
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    } else {
+      localStorage.setItem("products", JSON.stringify(initialProducts));
+      setProducts(initialProducts);
+    }
+  }, []);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cartItems");
+    if (storedCart) {
+      setCartItems(JSON.parse(storedCart));
+    } else {
+      localStorage.setItem("cartItems", JSON.stringify(initialItems));
+      setCartItems(initialItems);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleAddToCart = (product) => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+    if (existingItem) {
+      handleQuantityChange(product.id, existingItem.quantity + 1);
+    } else {
+      setCartItems([...cartItems, { ...product, quantity: 1 }]);
+    }
+  };
 
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return;
