@@ -61,11 +61,7 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <tr key={item.id} className="cart-row">
                   <td className="cart-cell">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="cart-image"
-                    />
+                    <img src={item.image} alt="..." className="cart-image" />
                     {item.title}
                   </td>
                   <td className="cart-cell">${item.price.toFixed(2)}</td>
