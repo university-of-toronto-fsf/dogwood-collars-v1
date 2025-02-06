@@ -1,7 +1,7 @@
 function Footer() {
   const styles = {
     footerStyle: {
-      position: "absolute",
+      // position: "absolute",
       bottom: 0,
       width: "100%",
     },
