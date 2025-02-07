@@ -1,14 +1,14 @@
 import CardComponent from "../components/Card/card.jsx";
-import multiColorImage from "../assets/multi-color.png";
-import pink from "../assets/pink.png";
-import black from "../assets/black.png";
-import brown from "../assets/brown.png";
-import darkBrown from "../assets/dark-brown.png";
-import antique from "../assets/antique.png";
-// import blackOrange from "../assets/black-orange.png";
-import green from "../assets/green.png";
-import teal from "../assets/teal.png";
-import darkBlue from "../assets/dark-blue.png";
+// import multiColorImage from "../assets/multi-color.png";
+// import pink from "../assets/pink.png";
+// import black from "../assets/black.png";
+// import brown from "../assets/brown.png";
+// import darkBrown from "../assets/dark-brown.png";
+// import antique from "../assets/antique.png";
+// // import blackOrange from "../assets/black-orange.png";
+// import green from "../assets/green.png";
+// import teal from "../assets/teal.png";
+// import darkBlue from "../assets/dark-blue.png";
 import backgroundImg from "../assets/img06.png";
 import { useState, useEffect } from "react";
 
