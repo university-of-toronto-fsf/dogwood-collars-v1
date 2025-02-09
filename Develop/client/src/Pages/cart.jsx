@@ -33,10 +33,17 @@ const CartPage = () => {
   // };
 
   const handleRemoveItem = (id) => {
-    const updatedItems = cartItems.filter((item) => item.id !== id);
-    console.log(updatedItems);
+    // Find the index of the first item with the given id
+    const itemIndex = cartItems.findIndex((item) => item.id === id);
     console.log(id);
-    setCartItems(updatedItems);
+    // console.log(item);
+
+    // If the item exists, create a new array without that specific item
+    if (itemIndex !== -1) {
+      const updatedItems = [...cartItems]; // Copy the array
+      updatedItems.splice(itemIndex, 1); // Remove the item at the found index
+      setCartItems(updatedItems); // Update the state
+    }
   };
 
   const getTotalPrice = () => {
@@ -60,17 +67,22 @@ const CartPage = () => {
             <input type="text" />
             <br></br>
             <button>Login</button>
+            <br></br>
+
+            <a>
+              <label htmlFor="Firstname">First Name:</label>
+              <input type="text" />
+              <label htmlFor="Lastname">Last Name:</label>
+              <input type="text" />
+              <label htmlFor="Email">Email:</label>
+              <input type="text" />
+              <button>Continue as Guest</button>
+            </a>
           </form>
-          <a>
-            <button>Continue as Guest</button>
-          </a>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
@@ -90,8 +102,8 @@ const CartPage = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item) => (
-                <tr key={item.id} className="cart-row">
+              {cartItems.map((item, index) => (
+                <tr key={`${item.id}-${index}`} className="cart-row">
                   <td className="cart-cell">
                     <img src={item.image} alt="" className="cart-image" />
                     {item.name}
@@ -99,23 +111,6 @@ const CartPage = () => {
                   <td className="cart-cell">
                     ${parseFloat(item.price).toFixed(2)}
                   </td>
-                  {/* <td className="cart-cell">
-                    <input
-                      type="number"
-                      min="1"
-                      value={item.quantity}
-                      onChange={(e) =>
-                        handleQuantityChange(
-                          item.id,
-                          parseInt(e.target.value, 10)
-                        )
-                      }
-                      className="cart-quantity-input"
-                    />
-                  </td> */}
-                  {/* <td className="cart-cell">
-                    ${(parseFloat(item.price) * item.quantity).toFixed(2)}
-                  </td> */}
                   <td className="cart-cell">
                     <button
                       onClick={() => handleRemoveItem(item.id)}
