@@ -13,7 +13,6 @@ import backgroundImg from "../assets/img06.png";
 import { useState, useEffect } from "react";
 
 const Product = () => {
-
   const [collars, setCollars] = useState([]);
 
   const [combinedCollars, setCombinedCollars] = useState([]);
