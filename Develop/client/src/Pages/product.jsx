@@ -4,81 +4,82 @@ import backgroundImg from "../assets/img06.png";
 
 const Product = () => {
   const [collars, setCollars] = useState([]);
+  const [cartMessage, setCartMessage] = useState("");
 
-  //   const [combinedCollars, setCombinedCollars] = useState([]);
+  //   //   const [combinedCollars, setCombinedCollars] = useState([]);
 
-  //   // const collars = [
-  //   //   {
-  //   //     id: 1,
-  //   //     name: "Multicolored",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: multiColorImage,
-  //   //   },
-  //   //   {
-  //   //     id: 2,
-  //   //     name: "Pink",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: pink,
-  //   //   },
-  //   //   {
-  //   //     id: 3,
-  //   //     name: "Dark Blue",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: darkBlue,
-  //   //   },
-  //   //   {
-  //   //     id: 4,
-  //   //     name: "Black",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: black,
-  //   //   },
-  //   //   {
-  //   //     id: 5,
-  //   //     name: "Brown",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: brown,
-  //   //   },
-  //   //   {
-  //   //     id: 6,
-  //   //     name: "Dark Brown",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: darkBrown,
-  //   //   },
-  //   //   {
-  //   //     id: 7,
-  //   //     name: "Gray",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: antique,
-  //   //   },
-  //   //   {
-  //   //     id: 1,
-  //   //     name: "Green",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: green,
-  //   //   },
-  //   //   {
-  //   //     id: 1,
-  //   //     name: "Teal",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: teal,
-  //   //   },
-  //   //   {
-  //   //     id: 1,
-  //   //     name: "Dark Blue",
-  //   //     sizes: "X-small, small, medium, large",
-  //   //     price: "$24-$48",
-  //   //     image: darkBlue,
-  //   //   },
-  //   // ];
+  //   //   // const collars = [
+  //   //   //   {
+  //   //   //     id: 1,
+  //   //   //     name: "Multicolored",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: multiColorImage,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 2,
+  //   //   //     name: "Pink",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: pink,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 3,
+  //   //   //     name: "Dark Blue",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: darkBlue,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 4,
+  //   //   //     name: "Black",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: black,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 5,
+  //   //   //     name: "Brown",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: brown,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 6,
+  //   //   //     name: "Dark Brown",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: darkBrown,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 7,
+  //   //   //     name: "Gray",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: antique,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 1,
+  //   //   //     name: "Green",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: green,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 1,
+  //   //   //     name: "Teal",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: teal,
+  //   //   //   },
+  //   //   //   {
+  //   //   //     id: 1,
+  //   //   //     name: "Dark Blue",
+  //   //   //     sizes: "X-small, small, medium, large",
+  //   //   //     price: "$24-$48",
+  //   //   //     image: darkBlue,
+  //   //   //   },
+  //   //   // ];
 
   useEffect(() => {
     async function getProducts() {
@@ -90,6 +91,14 @@ const Product = () => {
 
     getProducts();
   }, []);
+
+  const handleAddToCart = (collarName) => {
+    setCartMessage(`${collarName} has been added to your cart!`);
+
+    setTimeout(() => {
+      setCartMessage("");
+    }, 3000);
+  };
 
   return (
     <div
@@ -106,6 +115,26 @@ const Product = () => {
       <h1 style={{ marginBottom: "1.5rem", fontSize: "2rem", color: "#333" }}>
         Products
       </h1>
+
+      {cartMessage && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            backgroundColor: "#28a745",
+            color: "#fff",
+            padding: "10px 20px",
+            borderRadius: "5px",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            fontSize: "1rem",
+            zIndex: "9999",
+          }}
+        >
+          {cartMessage}
+        </div>
+      )}
 
       <div
         style={{
@@ -128,7 +157,7 @@ const Product = () => {
               minWidth: "250px",
             }}
           >
-            <CardComponent collar={collar} />
+            <CardComponent collar={collar} onAddToCart={handleAddToCart} />
           </div>
         ))}
       </div>
