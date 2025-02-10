@@ -16,7 +16,7 @@
       "src"
     ],
     "ext": "ts,json,js",
-    "exec": "node dist/server.js"
+    "exec": "node src/server.js"
   },
   "keywords": [],
   "author": "",
