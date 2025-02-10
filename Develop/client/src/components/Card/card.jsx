@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 const itemPrices = {
   XS: 24,
@@ -5,7 +7,8 @@ const itemPrices = {
   M: 38,
   L: 48,
 };
-function CardComponent({ collar }) {
+
+function CardComponent({ collar, onAddToCart }) {
   const [selectedSize, setSelectedSize] = useState("");
 
   const handleSizeChange = (event) => {
@@ -19,16 +22,20 @@ function CardComponent({ collar }) {
       const item = {
         id: collar.id,
         name: collar.name,
-        size: collar.size,
+        size: selectedSize, 
         price: price,
         image: collar.image,
       };
 
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
       cart.push(item);
-
       localStorage.setItem("cart", JSON.stringify(cart));
+
+      
+      onAddToCart(collar.name);
+
+      // Clear the size selection after adding to the cart
+      setSelectedSize("");
     } else {
       alert("Please select a size before adding to cart");
     }
