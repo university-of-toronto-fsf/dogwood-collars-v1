@@ -6,6 +6,7 @@ function Home() {
 
   const handleBuyNowClick = () => {
     navigate("/product");
+    window.scrollTo(0, 0);
   };
   return (
     <div
