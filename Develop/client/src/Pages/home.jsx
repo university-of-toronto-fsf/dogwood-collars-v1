@@ -1,33 +1,34 @@
-import img1 from "../assets/main-slogan.png";
-import { useNavigate } from "react-router-dom";
+import img1 from '../assets/main-slogan.png';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
 
   const handleBuyNowClick = () => {
-    navigate("/product");
+    navigate('/product');
+    window.scrollTo(0, 0);
   };
   return (
     <div
       className="d-flex justify-content-center"
       style={{
         backgroundImage: { img1 },
-        minHeight: "85vh",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#803809",
-        color: "white",
+        minHeight: '85vh',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#803809',
+        color: 'white',
       }}
     >
       <div
         className="text-center p-5"
         style={{
-          width: "80%",
-          borderRadius: "10px",
-          boxShadow: "none",
+          width: '80%',
+          borderRadius: '10px',
+          boxShadow: 'none',
         }}
       >
         <img
@@ -35,9 +36,9 @@ function Home() {
           className="img-fluid"
           alt="Dogwood main image and slogan"
           style={{
-            maxWidth: "100%",
-            height: "auto",
-            borderRadius: "10px",
+            maxWidth: '100%',
+            height: 'auto',
+            borderRadius: '10px',
           }}
         />
         <div className="text-center mt-4">
@@ -64,7 +65,7 @@ function Home() {
               type="button"
               className="btn btn-outline-info btn-lg"
               style={{
-                marginTop: "20px",
+                marginTop: '20px',
               }}
               onClick={handleBuyNowClick}
             >
