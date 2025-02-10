@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 const itemPrices = {
   XS: 24,
@@ -22,7 +20,7 @@ function CardComponent({ collar, onAddToCart }) {
       const item = {
         id: collar.id,
         name: collar.name,
-        size: selectedSize, 
+        size: selectedSize,
         price: price,
         image: collar.image,
       };
@@ -31,7 +29,6 @@ function CardComponent({ collar, onAddToCart }) {
       cart.push(item);
       localStorage.setItem("cart", JSON.stringify(cart));
 
-      
       onAddToCart(collar.name);
 
       // Clear the size selection after adding to the cart
@@ -51,7 +48,7 @@ function CardComponent({ collar, onAddToCart }) {
       />
       <div className="card-body">
         <h3>{collar.name}</h3>
-        <p className="card-text">{collar.price}</p>
+        <p className="card-text">$24-$48</p>
         <select
           value={selectedSize}
           onChange={handleSizeChange}
@@ -63,9 +60,12 @@ function CardComponent({ collar, onAddToCart }) {
           <option value="M">Medium $38</option>
           <option value="L">Large $48</option>
         </select>
+        <br></br>
 
         {/* Add to cart button */}
-        <button onClick={handleAddToCart}>Add to cart</button>
+        <button className="btn btn-info" onClick={handleAddToCart}>
+          Add to cart
+        </button>
       </div>
     </div>
   );
